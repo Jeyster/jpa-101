@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Categorie {
+public class Fabriquant {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +15,8 @@ public class Categorie {
 	
 	@NotNull
 	private String nom;
+	
+	private String adresse;
 
 	public Integer getId() {
 		return id;
@@ -32,6 +34,12 @@ public class Categorie {
 		this.nom = nom;
 	}
 	
-	
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
 
 }
