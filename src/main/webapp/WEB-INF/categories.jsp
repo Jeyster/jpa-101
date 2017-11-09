@@ -31,7 +31,10 @@
 		<td style="border: 1px solid black;"> <% out.println(current.getId()); %> </td>
 		<td style="border: 1px solid black;"> <% out.println(current.getNom()); %> </td>
 		<td>
-			<button>Edition</button>
+			<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edition">
+				<input type='hidden' name='clickedId' value='<%=current.getId()%>'/>
+				<button>Editer</button>
+			</form>		
 		</td>
 		<td>
 			<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/supprimer">
@@ -46,8 +49,10 @@
 </div>
 
 <div>
-	<button>Nouvelle Catégorie</button>
-</div>
+	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edition">
+		<input type='hidden' name='clickedId' value='0'/>
+		<button>Nouvelle Catégorie</button>
+	</form>	</div>
 
 </body>
 </html>

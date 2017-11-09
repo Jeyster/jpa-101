@@ -9,11 +9,20 @@
 </head>
 <body>
 
-<div>
-<%
-	Categorie categorie = (Categorie) request.getAttribute("categorie");
-	out.println(categorie.getId() + " ; " + categorie.getNom());
+<% 
+	Categorie categorie = (Categorie) request.getAttribute("categorie"); 
 %>
+
+
+<div>
+	<h1>Edition Catégorie : <% out.println(categorie.getNom()); %></h1>
+</div>
+
+<div>
+	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edition">
+		<label> Nom : <input type='text' name='name' value='<%=categorie.getNom()%>'/> </label>
+		<input type="submit">
+	</form>
 </div>
 
 </body>

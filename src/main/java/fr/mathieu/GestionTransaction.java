@@ -26,6 +26,11 @@ public class GestionTransaction {
 		return c;
 	}
 	
+	public void modifierNomCategorie(String nom, Categorie categorie) {
+		categorie.setNom(nom);
+		em.merge(categorie);
+	}
+	
 	public Fabricant ajouterFabricant() {
 		Fabricant f = new Fabricant();
 		f.setNom("fabriquant " + new Date());
