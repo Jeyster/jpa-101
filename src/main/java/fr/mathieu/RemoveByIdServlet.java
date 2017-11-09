@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
 @WebServlet("/remove")
+@SuppressWarnings("serial")
 public class RemoveByIdServlet extends HttpServlet{
 	
 	@PersistenceContext(name="Catalogue")

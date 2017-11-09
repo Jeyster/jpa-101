@@ -15,11 +15,11 @@ public class Produit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Categorie categorie;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Fabriquant fabriquant;
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Fabricant fabricant;
 	
 	@NotNull
 	private String nom;
@@ -42,12 +42,12 @@ public class Produit {
 		this.categorie = categorie;
 	}
 
-	public Fabriquant getFabriquant() {
-		return fabriquant;
+	public Fabricant getFabricant() {
+		return fabricant;
 	}
 
-	public void setFabriquant(Fabriquant fabriquant) {
-		this.fabriquant = fabriquant;
+	public void setFabricant(Fabricant fabricant) {
+		this.fabricant = fabricant;
 	}
 
 	public String getNom() {

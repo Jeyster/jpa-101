@@ -1,6 +1,7 @@
 package fr.mathieu;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -9,26 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/find")
+@WebServlet("/categories")
 @SuppressWarnings("serial")
-public class FindByIdServlet extends HttpServlet{
-
+public class CategoriesServlet extends HttpServlet{
+	
 	@EJB
 	private GestionTransaction gt;
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		int id = Integer.parseInt(req.getParameter("id"));
-		Produit p = new Produit();
-		p = gt.findById(id);
-		
-		req.setAttribute("produit", p);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/find-by-id.jsp").forward(req, resp);
-		
+		List<Categorie> categories = gt.importCategories();
+		req.setAttribute("categories",categories);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/categories.jsp").forward(req, resp);
 	}
-	
-	
-
 }
