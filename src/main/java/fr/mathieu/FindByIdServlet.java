@@ -29,6 +29,7 @@ public class FindByIdServlet extends HttpServlet{
 		try {
 			userTransaction.begin();
 			p = em.find(Produit.class, id);
+			//em.remove(p);
 			userTransaction.commit();		
 		} catch (Exception e) {
 			e.printStackTrace();
