@@ -1,4 +1,4 @@
-package fr.mathieu;
+package fr.mathieu.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.mathieu.Categorie;
+import fr.mathieu.Fabricant;
+import fr.mathieu.GestionTransaction;
+import fr.mathieu.Produit;
 
 @WebServlet("/index.html")
 @SuppressWarnings("serial")
@@ -42,8 +47,8 @@ public class TestServlet extends HttpServlet{
 			for (int i = 0; i < nbr; i++) {
 				Produit p = new Produit();
 				p.setNom("produit " + new Date());
-				Categorie c = categories.get((int) (Math.random() * 10));
-				Fabricant f = fabricants.get((int) (Math.random() * 10));//new  Random().nextInt(categories.size()))
+				Categorie c = categories.get((int) (Math.random() * categories.size()));
+				Fabricant f = fabricants.get((int) (Math.random() * categories.size()));//new  Random().nextInt(categories.size()))
 				p.setCategorie(c);
 				p.setFabricant(f);
 				produits.add(p);
@@ -70,8 +75,8 @@ public class TestServlet extends HttpServlet{
 				for (int i = 0; i < nbrProduits ;i++) {
 					Produit p = new Produit();
 					p.setNom("produit " + new Date());
-					Categorie c = categories.get((int) (Math.random() * 10));
-					Fabricant f = fabricants.get((int) (Math.random() * 10));
+					Categorie c = categories.get((int) (Math.random() * categories.size()));
+					Fabricant f = fabricants.get((int) (Math.random() * categories.size()));
 					p.setCategorie(c);
 					p.setFabricant(f);
 					p.setReference(UUID.randomUUID().toString());

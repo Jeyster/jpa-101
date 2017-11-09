@@ -14,7 +14,7 @@ public class GestionTransaction {
 	@PersistenceContext(name="Catalogue")
 	EntityManager em;
 
-	public Produit findById(int id) {
+	public Produit findProduitById(int id) {
 		Produit p = em.find(Produit.class, id);
 		return p;
 	}

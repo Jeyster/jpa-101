@@ -1,4 +1,4 @@
-package fr.mathieu;
+package fr.mathieu.servlets;
 
 import java.io.IOException;
 
@@ -9,26 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.mathieu.Categorie;
+import fr.mathieu.GestionTransaction;
 
-@WebServlet("/find")
+@WebServlet("/find-categorie")
 @SuppressWarnings("serial")
-public class FindByIdServlet extends HttpServlet{
-
+public class CategorieProduitsServlet extends HttpServlet{
+	
 	@EJB
 	private GestionTransaction gt;
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int id = Integer.parseInt(req.getParameter("id"));		
+		Categorie categorie = gt.findByIdCategorie(id);
 		
-		int id = Integer.parseInt(req.getParameter("id"));
-		Produit p = new Produit();
-		p = gt.findById(id);
-		
-		req.setAttribute("produit", p);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/find-by-id.jsp").forward(req, resp);
-		
+		req.setAttribute("categorie",categorie);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/find-by-id-categories.jsp").forward(req, resp);
 	}
-	
-	
 
 }
