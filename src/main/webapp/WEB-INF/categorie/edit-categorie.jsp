@@ -23,7 +23,7 @@
 
 <div>
 	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
-		<label> Nom : <input type='text' name='name' value='<%=categorie.getNom()%>'/> </label>
+		<label> Nom <input type='text' name='name' value='<%=categorie.getNom()%>'/> </label>
 		<input type="submit" value="Valider">
 	</form>
 </div>

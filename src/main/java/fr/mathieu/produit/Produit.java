@@ -2,6 +2,7 @@ package fr.mathieu.produit;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,10 +22,10 @@ public class Produit {
 	// Relie Produit à Categorie dans BD à travers l'annotation @ManyToOne
 	// (plusieurs Produit pour 1 Categorie)
 	// cascade merge et persist lorsque Produit ajouté à BD
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
 	private Categorie categorie;
 	
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
 	private Fabricant fabricant;
 	
 	@NotNull

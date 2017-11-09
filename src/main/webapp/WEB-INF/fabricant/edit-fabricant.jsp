@@ -26,9 +26,9 @@
 
 <div>
 	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants/edit">
-		<label> Nom : <input type='text' name='name' value='<%=fabricant.getNom()%>'/> </label>
+		<label> Nom <input type='text' name='name' value='<%=fabricant.getNom()%>'/> </label>
 		<br/>
-		<label> Adresse : <input type='text' name='address' value='<%=fabricant.getAdresse()%>'/> </label>
+		<label> Adresse <input type='text' name='address' value='<%=fabricant.getAdresse()%>'/> </label>
 		<br/>
 		<input type="submit" value="Valider">
 	</form>

@@ -43,6 +43,14 @@ public class GestionTransaction {
 		em.merge(fabricant);	
 	}
 	
+	public void modifyProduit(Produit produit, String name, String ref, Categorie categorie, Fabricant fabricant) {
+		produit.setNom(name);
+		produit.setReference(ref);
+		produit.setCategorie(categorie);
+		produit.setFabricant(fabricant);
+		em.merge(produit);	
+	}
+	
 	public List<Categorie> importCategories(){
 		TypedQuery<Categorie> query = em.createQuery("from " + Categorie.class.getSimpleName(), Categorie.class);
 		return query.getResultList();
@@ -50,6 +58,11 @@ public class GestionTransaction {
 	
 	public List<Fabricant> importFabricants(){
 		TypedQuery<Fabricant> query = em.createQuery("from " + Fabricant.class.getSimpleName(), Fabricant.class);
+		return query.getResultList();
+	}
+	
+	public List<Produit> importProduits() {
+		TypedQuery<Produit> query = em.createQuery("from " + Produit.class.getSimpleName(), Produit.class);
 		return query.getResultList();
 	}
 	
@@ -84,6 +97,12 @@ public class GestionTransaction {
 		}
 		em.remove(fabricant);
 		return fabricant;
+	}
+
+	public Produit removeByIdProduit(int id) {
+		Produit produit = this.findProduitById(id);
+		em.remove(produit);
+		return produit;
 	}
 
 	
