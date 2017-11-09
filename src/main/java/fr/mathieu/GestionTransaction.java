@@ -32,9 +32,15 @@ public class GestionTransaction {
 		return fabricant;
 	}
 	
-	public void modifyCategorieName(String nom, Categorie categorie) {
-		categorie.setNom(nom);
+	public void modifyCategorieName(String name, Categorie categorie) {
+		categorie.setNom(name);
 		em.merge(categorie);
+	}
+	
+	public void modifyFabricant(String name, String address, Fabricant fabricant) {
+		fabricant.setNom(name);
+		fabricant.setAdresse(address);
+		em.merge(fabricant);	
 	}
 	
 	public List<Categorie> importCategories(){
@@ -57,6 +63,11 @@ public class GestionTransaction {
 		return categorie;
 	}
 	
+	public Fabricant findFabricantById(int id) {
+		Fabricant fabricant = em.find(Fabricant.class, id);
+		return fabricant;		
+	}
+	
 	public Categorie removeByIdCategorie(int id) {
 		Categorie categorie = this.findCategorieById(id);
 		for (Produit current : categorie.getProduits()) {
@@ -65,5 +76,15 @@ public class GestionTransaction {
 		em.remove(categorie);
 		return categorie;
 	}
+
+	public Fabricant removeByIdFabricant(int id) {
+		Fabricant fabricant = this.findFabricantById(id);
+		for (Produit current : fabricant.getProduits()) {
+			em.remove(current);
+		}
+		em.remove(fabricant);
+		return fabricant;
+	}
+
 	
 }

@@ -3,6 +3,7 @@ package fr.mathieu.fabricant;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,9 +26,9 @@ public class Fabricant {
 	
 	private String adresse;
 	
-	// Relie produits et fabricants dans BD à travers l'annotation @OneToMany
-	// (1 Fabricant pour plusieurs Produit)
-	@OneToMany(mappedBy="fabricant")
+	// Liste des produits qui ont le Fabricant instancié comme valeur d'attribut
+	// Relie produits et le Fabricant dans BD à travers l'annotation @OneToMany (1 Fabricant pour plusieurs Produit)
+	@OneToMany(mappedBy="fabricant", fetch = FetchType.EAGER)//fetch : a permis d'utiliser les produits attribués à une Categorie envoyé dans la vue
 	private List<Produit> produits;
 
 	public Integer getId() {

@@ -41,6 +41,7 @@ public class InitServlet extends HttpServlet {
 		for (int i = 0; i < nbr; i++) {
 			Fabricant fabricant = new Fabricant();
 			fabricant.setNom("fabriquant " + new Date());
+			fabricant.setAdresse("adresse " + new Date());
 			fabricants.add(gt.addFabricant(fabricant));
 		}
 		return fabricants;
@@ -57,7 +58,7 @@ public class InitServlet extends HttpServlet {
 			Produit p = new Produit();
 			p.setNom("produit " + new Date());
 			Categorie c = categories.get((int) (Math.random() * categories.size()));
-			Fabricant f = fabricants.get((int) (Math.random() * categories.size()));// new
+			Fabricant f = fabricants.get((int) (Math.random() * fabricants.size()));// new
 																					// Random().nextInt(categories.size()))
 			p.setCategorie(c);
 			p.setFabricant(f);
