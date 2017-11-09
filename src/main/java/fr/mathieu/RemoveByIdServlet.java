@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
-@WebServlet("/find")
-public class FindByIdServlet extends HttpServlet{
+@WebServlet("/remove")
+public class RemoveByIdServlet extends HttpServlet{
 	
 	@PersistenceContext(name="Catalogue")
 	EntityManager em;
@@ -29,13 +29,14 @@ public class FindByIdServlet extends HttpServlet{
 		try {
 			userTransaction.begin();
 			p = em.find(Produit.class, id);
+			em.remove(p);
 			userTransaction.commit();		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		req.setAttribute("produit", p);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/find-by-id.jsp").forward(req, resp);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/remove-by-id.jsp").forward(req, resp);
 		
 	}
 	

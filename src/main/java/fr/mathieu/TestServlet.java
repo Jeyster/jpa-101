@@ -41,7 +41,7 @@ public class TestServlet extends HttpServlet{
 					e.printStackTrace();
 				}
 				Categorie c = new Categorie();
-				c.setNom("categorie" + new Date());
+				c.setNom("categorie " + new Date());
 				categories.add(c);
 				try {
 					em.persist(c);
@@ -65,7 +65,7 @@ public class TestServlet extends HttpServlet{
 					e.printStackTrace();
 				}
 				Fabriquant f = new Fabriquant();
-				f.setNom("fabriquant" + new Date());
+				f.setNom("fabriquant " + new Date());
 				fabriquants.add(f);
 				try {
 					em.persist(f);
@@ -83,7 +83,7 @@ public class TestServlet extends HttpServlet{
 			List<Produit> produits = new ArrayList<>();
 			for (int i = 0; i < nbr; i++) {
 				Produit p = new Produit();
-				p.setNom("produit" + new Date());
+				p.setNom("produit " + new Date());
 				Categorie c = categories.get((int) (Math.random() * 10));
 				Fabriquant f = fabriquants.get((int) (Math.random() * 10));//new  Random().nextInt(categories.size()))
 				p.setCategorie(c);
@@ -100,10 +100,10 @@ public class TestServlet extends HttpServlet{
 				List<Categorie> categories = createCategorieList(10);
 				List<Fabriquant> fabriquants = createFabriquantList(10);
 				List<Produit> produits = new ArrayList<>();
-				int nbrProduits = 1000;
+				int nbrProduits = 100;
 				for (int i = 0; i < nbrProduits ;i++) {
 					Produit p = new Produit();
-					p.setNom("produit" + new Date());
+					p.setNom("produit " + new Date());
 					try {
 						userTransaction.begin();
 					} catch (NotSupportedException | SystemException e) {
@@ -125,6 +125,10 @@ public class TestServlet extends HttpServlet{
 					}
 					produits.add(p);
 				}
+				
+				String message = nbrProduits + " produits ont été créés et ajoutés à la base de données !";
+				req.setAttribute("test", message);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/test.jsp").forward(req, resp);
 		}
 		
 	
