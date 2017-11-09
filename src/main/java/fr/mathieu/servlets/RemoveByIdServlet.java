@@ -1,4 +1,4 @@
-package fr.mathieu;
+package fr.mathieu.servlets;
 
 import java.io.IOException;
 
@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import fr.mathieu.Produit;
+
 @WebServlet("/remove")
+@SuppressWarnings("serial")
 public class RemoveByIdServlet extends HttpServlet{
 	
 	@PersistenceContext(name="Catalogue")
