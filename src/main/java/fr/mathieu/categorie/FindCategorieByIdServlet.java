@@ -1,4 +1,4 @@
-package fr.mathieu.servlets;
+package fr.mathieu.categorie;
 
 import java.io.IOException;
 
@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.mathieu.Categorie;
 import fr.mathieu.GestionTransaction;
+
+/* SERVLET
+ * -----------
+ * Trouver dans BD la Categorie d'id entré en queryParam
+ * input : queryParam id (?id=idVoulu dans url) */
 
 @WebServlet("/find-categorie")
 @SuppressWarnings("serial")
-public class CategorieProduitsServlet extends HttpServlet{
+public class FindCategorieByIdServlet extends HttpServlet{
 	
 	@EJB
 	private GestionTransaction gt;
@@ -22,10 +26,10 @@ public class CategorieProduitsServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));		
-		Categorie categorie = gt.findByIdCategorie(id);
+		Categorie categorie = gt.findCategorieById(id);
 		
 		req.setAttribute("categorie",categorie);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/find-by-id-categories.jsp").forward(req, resp);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/categorie/find-categorie-by-id.jsp").forward(req, resp);
 	}
 
 }

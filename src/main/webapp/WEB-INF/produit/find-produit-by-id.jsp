@@ -1,5 +1,4 @@
-<%@page import="fr.mathieu.Produit"%>
-<%@page import="fr.mathieu.Categorie"%>
+<%@page import="fr.mathieu.produit.Produit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,20 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <div>
 <%
-	Categorie categorie = (Categorie) request.getAttribute("categorie");
-	out.println("Nom catégorie : " + categorie.getNom());	
-	
-	for (Produit current : categorie.getProduits()){%>
-	<div>
-		<% 
-		out.println("Nom produit : " + current.getNom()); 
-		%>
-	</div>
-	<%}
-	
+	Produit produit = (Produit) request.getAttribute("produit");
+	out.println(produit.getId() + " ; " + produit.getNom() + " ; " + produit.getReference());
 %>
 </div>
+
 </body>
 </html>

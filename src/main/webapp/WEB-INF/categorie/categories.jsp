@@ -1,4 +1,4 @@
-<%@page import="fr.mathieu.Categorie"%>
+<%@page import="fr.mathieu.categorie.Categorie"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,6 +11,7 @@
 <body>
 
 <%
+	//on récupère les Categorie envoyées comme attribut de la requète
 	List<Categorie> categories = (List<Categorie>) request.getAttribute("categories");
 %>
 
@@ -31,13 +32,17 @@
 		<td style="border: 1px solid black;"> <% out.println(current.getId()); %> </td>
 		<td style="border: 1px solid black;"> <% out.println(current.getNom()); %> </td>
 		<td>
-			<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edition">
+			<!-- Le form permet d'associer sa soumission avec une 'method' renseignée 
+				 d'une servlet d'URL 'action' renseigné.
+				 Une valeur 'value' est envoyé à la servlet comme paramètre de requête
+				 identifiée par 'name' -->
+			<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
 				<input type='hidden' name='clickedId' value='<%=current.getId()%>'/>
 				<button>Editer</button>
 			</form>		
 		</td>
 		<td>
-			<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/supprimer">
+			<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/delete">
 				<input type='hidden' name='clickedId' value='<%=current.getId()%>'/>
 				<button>X</button>
 			</form>
@@ -49,7 +54,7 @@
 </div>
 
 <div>
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edition">
+	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
 		<input type='hidden' name='clickedId' value='0'/>
 		<button>Nouvelle Catégorie</button>
 	</form>	</div>

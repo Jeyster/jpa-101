@@ -1,4 +1,4 @@
-package fr.mathieu.servlets;
+package fr.mathieu.categorie;
 
 import java.io.IOException;
 
@@ -11,9 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.mathieu.GestionTransaction;
 
-@WebServlet("/categories/supprimer")
+
+/* SERVLET
+ * -----------
+ * Supprime de la BD la Categorie d'id entré donné en paramètre de la requête 
+ * (queryParam ou parmètre soumis par un form dans .jsp)
+ * Redirige vers CategoriesServlet */
+
+@WebServlet("/categories/delete")
 @SuppressWarnings("serial")
-public class SupprimerCategorieServlet extends HttpServlet {
+public class DeleteCategorieServlet extends HttpServlet {
 
 	@EJB
 	private GestionTransaction gt;

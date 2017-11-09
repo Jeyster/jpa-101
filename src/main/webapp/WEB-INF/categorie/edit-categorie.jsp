@@ -1,4 +1,4 @@
-<%@page import="fr.mathieu.Categorie"%>
+<%@page import="fr.mathieu.categorie.Categorie"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,17 +11,20 @@
 
 <% 
 	Categorie categorie = (Categorie) request.getAttribute("categorie"); 
+	if (categorie.getNom() == null) {
+		categorie.setNom("Nouvelle Categorie");
+	}
 %>
 
 
 <div>
-	<h1>Edition Catégorie : <% out.println(categorie.getNom()); %></h1>
+	<h1><% out.println(categorie.getNom()); %></h1>
 </div>
 
 <div>
-	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edition">
+	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
 		<label> Nom : <input type='text' name='name' value='<%=categorie.getNom()%>'/> </label>
-		<input type="submit">
+		<input type="submit" value="Valider">
 	</form>
 </div>
 

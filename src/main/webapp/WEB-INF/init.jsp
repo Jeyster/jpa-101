@@ -10,8 +10,8 @@
 	<body>
 		<p>
 			<%
-			String attribut = (String) request.getAttribute("test");
-			out.println(attribut);
+			int nbrProduit = (int) request.getAttribute("nbrProduit");
+			out.println(nbrProduit + " produits ont été créés et ajoutés à la base de données !");
 			%>
 		</p>
 	</body>

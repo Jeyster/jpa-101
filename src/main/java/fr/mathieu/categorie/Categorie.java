@@ -1,4 +1,4 @@
-package fr.mathieu;
+package fr.mathieu.categorie;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import fr.mathieu.produit.Produit;
+
 @Entity
 public class Categorie {
 	
@@ -20,7 +22,7 @@ public class Categorie {
 	@NotNull
 	private String nom;
 	
-	@OneToMany(mappedBy="categorie", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="categorie", fetch = FetchType.EAGER) //fetch : a permis d'utiliser les produits attribués à une Categorie envoyé dans la vue
 	private List<Produit> produits;
 
 	public Integer getId() {

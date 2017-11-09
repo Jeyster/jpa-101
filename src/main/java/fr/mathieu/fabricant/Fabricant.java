@@ -1,4 +1,4 @@
-package fr.mathieu;
+package fr.mathieu.fabricant;
 
 import java.util.List;
 
@@ -9,18 +9,24 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import fr.mathieu.produit.Produit;
+
 @Entity
 public class Fabricant {
 	
+	// Id généré et incrémenté automatiquement lors l'objet est ajouté à la BD
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	// Champ obligatoire
 	@NotNull
 	private String nom;
 	
 	private String adresse;
 	
+	// Relie produits et fabricants dans BD à travers l'annotation @OneToMany
+	// (1 Fabricant pour plusieurs Produit)
 	@OneToMany(mappedBy="fabricant")
 	private List<Produit> produits;
 
