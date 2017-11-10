@@ -17,7 +17,7 @@ import fr.mathieu.categorie.Categorie;
 import fr.mathieu.fabricant.Fabricant;
 import fr.mathieu.produit.Produit;
 
-@WebServlet("/index.html")
+@WebServlet("init")
 @SuppressWarnings("serial")
 public class InitServlet extends HttpServlet {
 
