@@ -32,6 +32,13 @@
 	</script>
 
 <div>
+	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants">
+		<label> <input type='text' name='searchedName'/> </label>
+		<input type="submit" value="Rechercher">
+	</form>
+</div>
+
+<div>
 
 <table style="border-collapse: collapse;">
 	<tr> 

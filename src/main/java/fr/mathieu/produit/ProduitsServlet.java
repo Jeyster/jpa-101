@@ -33,6 +33,7 @@ public class ProduitsServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int myCategorieId = 0;
 		int myFabricantId = 0;
+		String searchedName = "";
 		
 		try {
 			myCategorieId = Integer.parseInt(req.getParameter("categorieId"));
@@ -40,9 +41,20 @@ public class ProduitsServlet extends HttpServlet{
 		try {
 			myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
 		} catch (NumberFormatException e) {};	
+		try {
+			myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
+		} catch (NumberFormatException e) {};	
+		try {
+			searchedName = req.getParameter("searchedName");
+		} catch (NullPointerException e) {
+			searchedName = "";
+		};
 		
 		List<Produit> produits = new ArrayList<>();
-		if (myCategorieId != 0) {
+		if ((searchedName != "") && (searchedName != null)) {
+			produits = gt.findProduitsByName(searchedName);
+		}
+		else if (myCategorieId != 0) {
 			produits = gt.findCategorieProduits(myCategorieId);
 		}
 		else if (myFabricantId != 0) {

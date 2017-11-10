@@ -91,6 +91,51 @@ public class GestionTransaction {
 		return fabricant;		
 	}
 	
+	public List<Produit> findProduitsByName(String searchedName) {
+		TypedQuery<Produit> query = em.createQuery("select distinct produit from " + Produit.class.getSimpleName() + " produit where produit.nom like '%" + searchedName +"%'", Produit.class);
+		return query.getResultList();
+	}
+	
+	public List<Categorie> findCategoriesByName(String searchedName) {
+		TypedQuery<Categorie> query = em.createQuery("select distinct categorie from " + Categorie.class.getSimpleName() + " categorie where categorie.nom like '%" + searchedName +"%'", Categorie.class);
+		return query.getResultList();
+	}
+	
+	public List<Fabricant> findFabricantsByName(String searchedName) {
+		TypedQuery<Fabricant> query = em.createQuery("select distinct fabricant from " + Fabricant.class.getSimpleName() + " fabricant where fabricant.nom like '%" + searchedName +"%'", Fabricant.class);
+		return query.getResultList();
+	}
+	
+	public void removeAllProduits() {
+		TypedQuery<Produit> query = em.createQuery("from " + Produit.class.getSimpleName(), Produit.class);
+		List<Produit> produits = query.getResultList();
+		for (Produit current : produits) {
+			em.remove(current);
+		}
+	}
+	
+	public void removeAllCategories() {
+		TypedQuery<Categorie> query = em.createQuery("from " + Categorie.class.getSimpleName(), Categorie.class);
+		List<Categorie> categories = query.getResultList();
+		for (Categorie current : categories) {
+			em.remove(current);
+		}
+	}
+	
+	public void removeAllFabricants() {
+		TypedQuery<Fabricant> query = em.createQuery("from " + Fabricant.class.getSimpleName(), Fabricant.class);
+		List<Fabricant> fabricants = query.getResultList();
+		for (Fabricant current : fabricants) {
+			em.remove(current);
+		}
+	}
+	
+	public Produit removeByIdProduit(int id) {
+		Produit produit = this.findProduitById(id);
+		em.remove(produit);
+		return produit;
+	}
+	
 	public Categorie removeByIdCategorie(int id) {
 		Categorie categorie = this.findCategorieById(id);
 		for (Produit current : categorie.getProduits()) {
@@ -108,12 +153,5 @@ public class GestionTransaction {
 		em.remove(fabricant);
 		return fabricant;
 	}
-
-	public Produit removeByIdProduit(int id) {
-		Produit produit = this.findProduitById(id);
-		em.remove(produit);
-		return produit;
-	}
-
 	
 }

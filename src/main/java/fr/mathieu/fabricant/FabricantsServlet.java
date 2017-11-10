@@ -1,6 +1,7 @@
 package fr.mathieu.fabricant;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -30,7 +31,20 @@ public class FabricantsServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Fabricant> fabricants = gt.importFabricants();
+		String searchedName = "";
+		try {
+			searchedName = req.getParameter("searchedName");
+		} catch (NullPointerException e) {
+			searchedName = "";
+		};
+		
+		List<Fabricant> fabricants = new ArrayList<>();
+		if ((searchedName != "") && (searchedName != null)) {
+			fabricants = gt.findFabricantsByName(searchedName);
+		}
+		else {
+			fabricants = gt.importFabricants();
+		}
 		req.setAttribute("fabricants",fabricants);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/fabricant/fabricants.jsp").forward(req, resp);
 	}

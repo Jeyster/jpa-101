@@ -25,13 +25,21 @@
 
 <h1><% out.println(produits.size()); %> Produits</h1>
 
+<div>
 	<input type="button" value="Revenir au menu principal" name="Cr" onclick="openPage('main.jsp')" />
-	
 	<script type="text/javascript">
 		 function openPage(pageURL){
 		 	window.location.href = pageURL;
 		 }
 	</script>
+</div>
+
+<div>
+	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits">
+		<label> <input type='text' name='searchedName'/> </label>
+		<input type="submit" value="Rechercher">
+	</form>
+</div>
 
 <div>
 

@@ -1,6 +1,7 @@
 package fr.mathieu.categorie;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -30,7 +31,20 @@ public class CategoriesServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Categorie> categories = gt.importCategories();
+		String searchedName = "";
+		try {
+			searchedName = req.getParameter("searchedName");
+		} catch (NullPointerException e) {
+			searchedName = "";
+		};
+		
+		List<Categorie> categories = new ArrayList<>();
+		if ((searchedName != "") && (searchedName != null)) {
+			categories = gt.findCategoriesByName(searchedName);
+		}
+		else {
+			categories = gt.importCategories();
+		}
 		req.setAttribute("categories",categories);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/categorie/categories.jsp").forward(req, resp);
 	}
