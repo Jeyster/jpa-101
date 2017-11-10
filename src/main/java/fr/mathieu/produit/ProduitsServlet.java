@@ -1,6 +1,7 @@
 package fr.mathieu.produit;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -30,7 +31,26 @@ public class ProduitsServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Produit> produits = gt.importProduits();
+		int myCategorieId = 0;
+		int myFabricantId = 0;
+		
+		try {
+			myCategorieId = Integer.parseInt(req.getParameter("categorieId"));
+		} catch (NumberFormatException e) {};
+		try {
+			myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
+		} catch (NumberFormatException e) {};	
+		
+		List<Produit> produits = new ArrayList<>();
+		if (myCategorieId != 0) {
+			produits = gt.findCategorieProduits(myCategorieId);
+		}
+		else if (myFabricantId != 0) {
+			produits = gt.findFabricantProduits(myFabricantId);
+		}
+		else {
+			produits = gt.importProduits();
+		}
 		req.setAttribute("produits",produits);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/produit/produits.jsp").forward(req, resp);
 	}

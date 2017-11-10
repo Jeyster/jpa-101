@@ -27,7 +27,7 @@ public class DeleteCategorieServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int id = Integer.parseInt(req.getParameter("clickedId"));		
+		int id = Integer.parseInt(req.getParameter("categorieId"));		
 		gt.removeByIdCategorie(id);
 		
 		resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/categories");

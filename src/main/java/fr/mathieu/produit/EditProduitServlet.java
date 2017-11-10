@@ -44,6 +44,7 @@ public class EditProduitServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.myProduitId = Integer.parseInt(req.getParameter("clickedId"));
+		
 		Produit produit;
 		if (this.myProduitId != 0) {
 			produit = gt.findProduitById(this.myProduitId);

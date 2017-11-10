@@ -17,11 +17,21 @@
 <body>
 
 <%
+
+
 	//on récupère les Categorie envoyées comme attribut de la requète
 	List<Produit> produits = (List<Produit>) request.getAttribute("produits");
 %>
 
-<h1>Produits</h1>
+<h1><% out.println(produits.size()); %> Produits</h1>
+
+	<input type="button" value="Revenir au menu principal" name="Cr" onclick="openPage('main.jsp')" />
+	
+	<script type="text/javascript">
+		 function openPage(pageURL){
+		 	window.location.href = pageURL;
+		 }
+	</script>
 
 <div>
 

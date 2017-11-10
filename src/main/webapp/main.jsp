@@ -22,10 +22,13 @@
 		<input type='hidden'/>
 		<button>Fabricants</button>
 	</form>	
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/init">
-		<input type='hidden'/>
-		<button>Initialisation</button>
-	</form>	
+	<input type="button" value="Creation aleatoire" name="Cr" onclick="openPage('random-creation.jsp')" />
+	
+	<script type="text/javascript">
+		 function openPage(pageURL){
+		 	window.location.href = pageURL;
+		 }
+	</script>
 
 </body>
 </html>

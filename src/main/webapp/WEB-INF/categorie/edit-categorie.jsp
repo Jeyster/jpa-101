@@ -28,5 +28,10 @@
 	</form>
 </div>
 
+	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories">
+		<input type='hidden'%>
+		<button>Revenir aux Catégories</button>
+	</form>	
+
 </body>
 </html>

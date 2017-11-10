@@ -41,7 +41,7 @@ public class EditFabricantServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.myFabricantId = Integer.parseInt(req.getParameter("clickedId"));
+		this.myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
 		Fabricant fabricant;
 		if (this.myFabricantId != 0) {
 			fabricant = gt.findFabricantById(this.myFabricantId);

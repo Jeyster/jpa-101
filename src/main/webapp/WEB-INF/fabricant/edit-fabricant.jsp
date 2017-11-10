@@ -34,6 +34,11 @@
 	</form>
 </div>
 
+	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants">
+		<input type='hidden'%>
+		<button>Revenir aux Fabricants</button>
+	</form>	
+
 
 </body>
 </html>

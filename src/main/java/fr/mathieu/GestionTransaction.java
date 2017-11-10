@@ -66,6 +66,16 @@ public class GestionTransaction {
 		return query.getResultList();
 	}
 	
+	public List<Produit> findCategorieProduits(int categorieId) {
+		TypedQuery<Produit> query = em.createQuery("select produit from " + Produit.class.getSimpleName() + " produit where produit.categorie.id = '" + categorieId +"'", Produit.class);
+		return query.getResultList();
+	}
+	
+	public List<Produit> findFabricantProduits(int fabricantId) {
+		TypedQuery<Produit> query = em.createQuery("select produit from " + Produit.class.getSimpleName() + " produit where produit.fabricant.id = '" + fabricantId +"'", Produit.class);
+		return query.getResultList();
+	}
+	
 	public Produit findProduitById(int id) {
 		Produit p = em.find(Produit.class, id);
 		return p;

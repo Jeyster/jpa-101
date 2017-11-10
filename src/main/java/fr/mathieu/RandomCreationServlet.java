@@ -17,9 +17,9 @@ import fr.mathieu.categorie.Categorie;
 import fr.mathieu.fabricant.Fabricant;
 import fr.mathieu.produit.Produit;
 
-@WebServlet("init")
+@WebServlet("/random-creation")
 @SuppressWarnings("serial")
-public class InitServlet extends HttpServlet {
+public class RandomCreationServlet extends HttpServlet {
 
 	@EJB
 	private GestionTransaction gt;
@@ -80,21 +80,22 @@ public class InitServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		int nbrProduit = Integer.parseInt(req.getParameter("nbrProduit"));
+		int nbrCategorie = Integer.parseInt(req.getParameter("nbrCategorie"));
+		int nbrFabricant = Integer.parseInt(req.getParameter("nbrFabricant"));
+		
 		List<Categorie> categories = gt.importCategories();
-		if (categories.isEmpty()) {
-			categories = new ArrayList<>();
-			categories = this.createCategorieList(10);
-		}
+		categories.addAll(this.createCategorieList(nbrCategorie));
+		
 		List<Fabricant> fabricants = gt.importFabricants();
-		if (fabricants.isEmpty()) {
-			fabricants = new ArrayList<>();
-			fabricants = this.createFabriquantList(10);
-		}
-		int nbrProduit = 100;
+		fabricants.addAll(this.createFabriquantList(nbrFabricant));
+		
 		this.createProduitListWithRandomFabCat(nbrProduit, fabricants, categories);
 
 		req.setAttribute("nbrProduit", nbrProduit);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/init.jsp").forward(req, resp);
+		req.setAttribute("nbrCategorie", nbrCategorie);
+		req.setAttribute("nbrFabricant", nbrFabricant);
+		this.getServletContext().getRequestDispatcher("/random-creation.jsp").forward(req, resp);
 	}
 
 }

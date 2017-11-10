@@ -26,6 +26,7 @@ public class EditCategorieServlet extends HttpServlet {
 	/* Attribut permettant de garder sur toute la session (et donc entre le GET et le POST)
 	 * l'id d'une catégorie choisie par le GET */
 	private int myCategorieId;
+	private int myProduitId = 0;
 
 	
 	/*
@@ -41,7 +42,13 @@ public class EditCategorieServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.myCategorieId = Integer.parseInt(req.getParameter("clickedId"));
+		try{
+			this.myCategorieId = Integer.parseInt(req.getParameter("categorieId"));
+		}catch(NumberFormatException e){ this.myProduitId = 0; }		
+		try{
+			this.myProduitId = Integer.parseInt(req.getParameter("produitId"));
+		}catch(NumberFormatException e){ this.myProduitId = 0; }
+		
 		Categorie categorie;
 		if (this.myCategorieId != 0) {
 			categorie = gt.findCategorieById(this.myCategorieId);
@@ -72,6 +79,7 @@ public class EditCategorieServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
+		
 		Categorie categorie;
 		if (this.myCategorieId != 0) {
 			categorie = gt.findCategorieById(myCategorieId);
@@ -80,6 +88,11 @@ public class EditCategorieServlet extends HttpServlet {
 			categorie = new Categorie();
 		}
 		gt.modifyCategorieName(name, categorie);
+		
+		if (this.myProduitId != 0){
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/produits/edit?clickedId="+this.myProduitId);
+		}
+		
 		resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/categories");
 	}
 	

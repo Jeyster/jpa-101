@@ -8,18 +8,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Edition Produit</title>
 </head>
 <body>
 
 <% 
 	Produit produit = (Produit) request.getAttribute("produit"); 
+
 	if (produit.getNom() == null) {
 		produit.setNom("Nouveau Produit");
 	}
 	if (produit.getReference() == null) {
 		produit.setReference("Nouvelle Reference");
 	}
+
 	List<Categorie> categories = (List<Categorie>) request.getAttribute("categories");
 	List<Fabricant> fabricants = (List<Fabricant>) request.getAttribute("fabricants");
 %>
@@ -64,6 +66,11 @@
 		<input type="submit" value="Valider">
 	</form>
 </div>
+
+<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits">
+	<input type='hidden'>
+	<button>Revenir aux Produits</button>
+</form>	
 
 
 </body>
