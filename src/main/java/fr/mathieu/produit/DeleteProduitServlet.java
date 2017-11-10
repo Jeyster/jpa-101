@@ -27,8 +27,8 @@ public class DeleteProduitServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int id = Integer.parseInt(req.getParameter("clickedId"));		
-		gt.removeByIdProduit(id);
+		int produitId = Integer.parseInt(req.getParameter("produitId"));		
+		gt.removeByIdProduit(produitId);
 		
 		resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/produits");
 	}

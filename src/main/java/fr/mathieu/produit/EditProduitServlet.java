@@ -27,7 +27,7 @@ public class EditProduitServlet extends HttpServlet {
 	
 	/* Attribut permettant de garder sur toute la session (et donc entre le GET et le POST)
 	 * l'id d'une catégorie choisie par le GET */
-	private int myProduitId;
+	private int produitId;
 
 	
 	/*
@@ -43,16 +43,22 @@ public class EditProduitServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.myProduitId = Integer.parseInt(req.getParameter("clickedId"));
+		
+		try {
+			this.produitId = Integer.parseInt(req.getParameter("produitId"));
+		}catch(NumberFormatException e) {
+			this.produitId = 0;
+		}
 		
 		Produit produit;
-		if (this.myProduitId != 0) {
-			produit = gt.findProduitById(this.myProduitId);
+		if (this.produitId != 0) {
+			produit = gt.findProduitById(this.produitId);
 		}
 		else {
 			produit = new Produit();
 		}
 		req.setAttribute("produit", produit);
+		req.setAttribute("produitId", this.produitId);
 		req.setAttribute("categories", gt.importCategories());
 		req.setAttribute("fabricants", gt.importFabricants());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/produit/edit-produit.jsp").forward(req, resp);
@@ -83,8 +89,8 @@ public class EditProduitServlet extends HttpServlet {
 		int fabricantId = Integer.parseInt(req.getParameter("fabricantId"));
 		Fabricant fabricant = gt.findFabricantById(fabricantId);
 		Produit produit;
-		if (this.myProduitId != 0) {
-			produit = gt.findProduitById(myProduitId);
+		if (this.produitId != 0) {
+			produit = gt.findProduitById(produitId);
 		}
 		else {
 			produit = new Produit();

@@ -77,7 +77,7 @@
 
 <div>
 	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
-		<input type='hidden' name='categorieId' value='0'/>
+		<input type='hidden' name='produitId' value='-1'/>
 		<button>Nouvelle Catégorie</button>
 	</form>	
 </div>

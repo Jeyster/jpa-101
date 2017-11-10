@@ -10,6 +10,8 @@
 <body>
 
 <% 
+	int produitId = (int) request.getAttribute("produitId");
+
 	Categorie categorie = (Categorie) request.getAttribute("categorie"); 
 	if (categorie.getNom() == null) {
 		categorie.setNom("Nouvelle Categorie");
@@ -23,13 +25,14 @@
 
 <div>
 	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
-		<label> Nom <input type='text' name='name' value='<%=categorie.getNom()%>'/> </label>
+		<label> Nom <input type='text' name='name' value='<%=categorie.getNom()%>' required> </label>
+		<input type='hidden' name='produitId' value='<%=produitId%>'/>
 		<input type="submit" value="Valider">
 	</form>
 </div>
 
 	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories">
-		<input type='hidden'%>
+		<input type='hidden'>
 		<button>Revenir aux Catégories</button>
 	</form>	
 

@@ -14,6 +14,7 @@
 
 <% 
 	Produit produit = (Produit) request.getAttribute("produit"); 
+	int produitId = (int) request.getAttribute("produitId");
 
 	if (produit.getNom() == null) {
 		produit.setNom("Nouveau Produit");
@@ -33,7 +34,7 @@
 
 <div>
 	<form id="form_id" method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits/edit">
-		<label> Nom <input type='text' name='name' value='<%=produit.getNom()%>'/> </label>
+		<label> Nom <input type='text' name='name' value='<%=produit.getNom()%>' required> </label>
 		<br/>
 		<label> Référence <input type='text' name='ref' value='<%=produit.getReference()%>'/> </label>
 		<br/>
@@ -46,7 +47,6 @@
 						<%
 					}
 				%>
-				<option value>
 			</select>
 		</label>
 		<br/>
@@ -59,13 +59,22 @@
 						<%
 					}
 				%>
-				<option value>
 			</select>
 		</label>
 		<br/>
 		<input type="submit" value="Valider">
 	</form>
 </div>
+
+<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
+	<input type='hidden' name='produitId' value='<%=produitId%>'>
+	<button>Nouvelle Catégorie</button>
+</form>	
+
+<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants/edit">
+	<input type='hidden' name='produitId' value='<%=produitId%>'>
+	<button>Nouveau Fabricant</button>
+</form>	
 
 <form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits">
 	<input type='hidden'>

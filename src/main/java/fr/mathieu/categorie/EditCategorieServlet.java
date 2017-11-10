@@ -26,7 +26,6 @@ public class EditCategorieServlet extends HttpServlet {
 	/* Attribut permettant de garder sur toute la session (et donc entre le GET et le POST)
 	 * l'id d'une catégorie choisie par le GET */
 	private int myCategorieId;
-	private int myProduitId = 0;
 
 	
 	/*
@@ -42,12 +41,16 @@ public class EditCategorieServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int produitId;	
+		try{
+			produitId = Integer.parseInt(req.getParameter("produitId"));
+		}
+		catch(NumberFormatException e){ produitId = -1; }
+		
 		try{
 			this.myCategorieId = Integer.parseInt(req.getParameter("categorieId"));
-		}catch(NumberFormatException e){ this.myProduitId = 0; }		
-		try{
-			this.myProduitId = Integer.parseInt(req.getParameter("produitId"));
-		}catch(NumberFormatException e){ this.myProduitId = 0; }
+		}
+		catch(NumberFormatException e){ this.myCategorieId = 0; }	
 		
 		Categorie categorie;
 		if (this.myCategorieId != 0) {
@@ -56,6 +59,8 @@ public class EditCategorieServlet extends HttpServlet {
 		else {
 			categorie = new Categorie();
 		}
+		
+		req.setAttribute("produitId", produitId);
 		req.setAttribute("categorie", categorie);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/categorie/edit-categorie.jsp").forward(req, resp);
 	}
@@ -79,6 +84,11 @@ public class EditCategorieServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
+		int produitId;
+		try {
+			produitId = Integer.parseInt(req.getParameter("produitId"));
+		}
+		catch(NumberFormatException e) {produitId = -1;}
 		
 		Categorie categorie;
 		if (this.myCategorieId != 0) {
@@ -89,11 +99,15 @@ public class EditCategorieServlet extends HttpServlet {
 		}
 		gt.modifyCategorieName(name, categorie);
 		
-		if (this.myProduitId != 0){
-			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/produits/edit?clickedId="+this.myProduitId);
+		if (produitId == 0){
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/produits/edit?produitId=0");
 		}
-		
-		resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/categories");
+		else if (produitId == -1) {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/categories");
+		}
+		else {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/produits/edit?produitId="+produitId);
+		}
 	}
 	
 	

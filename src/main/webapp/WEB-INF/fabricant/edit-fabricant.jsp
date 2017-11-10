@@ -10,6 +10,8 @@
 <body>
 
 <% 
+	int produitId = (int) request.getAttribute("produitId");
+
 	Fabricant fabricant = (Fabricant) request.getAttribute("fabricant"); 
 	if (fabricant.getNom() == null) {
 		fabricant.setNom("Nouveau Fabricant");
@@ -26,16 +28,17 @@
 
 <div>
 	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants/edit">
-		<label> Nom <input type='text' name='name' value='<%=fabricant.getNom()%>'/> </label>
+		<label> Nom <input type='text' name='name' value='<%=fabricant.getNom()%>' required> </label>
 		<br/>
 		<label> Adresse <input type='text' name='address' value='<%=fabricant.getAdresse()%>'/> </label>
 		<br/>
+		<input type='hidden' name='produitId' value='<%=produitId%>'/>
 		<input type="submit" value="Valider">
 	</form>
 </div>
 
 	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants">
-		<input type='hidden'%>
+		<input type='hidden'>
 		<button>Revenir aux Fabricants</button>
 	</form>	
 

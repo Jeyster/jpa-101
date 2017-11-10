@@ -41,7 +41,17 @@ public class EditFabricantServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
+
+		int produitId;
+		try{
+			produitId = Integer.parseInt(req.getParameter("produitId"));
+		}
+		catch(NumberFormatException e){ produitId = -1; }
+		
+		try{
+			this.myFabricantId = Integer.parseInt(req.getParameter("categorieId"));
+		}
+		catch(NumberFormatException e){ this.myFabricantId = 0; }			
 		Fabricant fabricant;
 		if (this.myFabricantId != 0) {
 			fabricant = gt.findFabricantById(this.myFabricantId);
@@ -49,6 +59,8 @@ public class EditFabricantServlet extends HttpServlet {
 		else {
 			fabricant = new Fabricant();
 		}
+		
+		req.setAttribute("produitId", produitId);
 		req.setAttribute("fabricant", fabricant);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/fabricant/edit-fabricant.jsp").forward(req, resp);
 	}
@@ -71,6 +83,12 @@ public class EditFabricantServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int produitId;
+		try {
+			produitId = Integer.parseInt(req.getParameter("produitId"));
+		}
+		catch(NumberFormatException e) {produitId = -1;}
+		
 		String name = req.getParameter("name");
 		String address = req.getParameter("address");
 		Fabricant fabricant;
@@ -81,8 +99,16 @@ public class EditFabricantServlet extends HttpServlet {
 			fabricant = new Fabricant();
 		}
 		gt.modifyFabricant(name, address, fabricant);
-		resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/fabricants");
-	}
+		
+		if (produitId == 0){
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/produits/edit?produitId=0");
+		}
+		else if (produitId == -1) {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/fabricants");
+		}
+		else {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/produits/edit?produitId="+produitId);
+		}	}
 	
 	
 	

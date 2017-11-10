@@ -59,13 +59,13 @@
 				 Une valeur 'value' est envoyé à la servlet comme paramètre de requête
 				 identifiée par 'name' -->
 			<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits/edit">
-				<input type='hidden' name='clickedId' value='<%=current.getId()%>'/>
+				<input type='hidden' name='produitId' value='<%=current.getId()%>'/>
 				<button>Editer</button>
 			</form>		
 		</td>
 		<td>
 			<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits/delete">
-				<input type='hidden' name='clickedId' value='<%=current.getId()%>'/>
+				<input type='hidden' name='produitId' value='<%=current.getId()%>'/>
 				<button>X</button>
 			</form>
 		</td>
@@ -77,7 +77,7 @@
 
 <div>
 	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits/edit">
-		<input type='hidden' name='clickedId' value='0'/>
+		<input type='hidden'/>
 		<button>Nouveau Produit</button>
 	</form>	
 </div>
