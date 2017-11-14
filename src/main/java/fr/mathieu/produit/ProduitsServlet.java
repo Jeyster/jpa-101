@@ -42,9 +42,6 @@ public class ProduitsServlet extends HttpServlet{
 			myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
 		} catch (NumberFormatException e) {};	
 		try {
-			myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
-		} catch (NumberFormatException e) {};	
-		try {
 			searchedName = req.getParameter("searchedName");
 		} catch (NullPointerException e) {
 			searchedName = "";
