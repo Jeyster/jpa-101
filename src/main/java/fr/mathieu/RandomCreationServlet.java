@@ -87,10 +87,37 @@ public class RandomCreationServlet extends HttpServlet {
 		List<Categorie> categories = gt.importCategories();
 		categories.addAll(this.createCategorieList(nbrCategorie));
 		
+		try        
+		{
+		    Thread.sleep(1000);
+		} 
+		catch(InterruptedException ex) 
+		{
+		    Thread.currentThread().interrupt();
+		}
+		
 		List<Fabricant> fabricants = gt.importFabricants();
 		fabricants.addAll(this.createFabriquantList(nbrFabricant));
 		
+		try        
+		{
+		    Thread.sleep(1000);
+		} 
+		catch(InterruptedException ex) 
+		{
+		    Thread.currentThread().interrupt();
+		}
+		
 		this.createProduitListWithRandomFabCat(nbrProduit, fabricants, categories);
+		
+		try        
+		{
+		    Thread.sleep(1000);
+		} 
+		catch(InterruptedException ex) 
+		{
+		    Thread.currentThread().interrupt();
+		}
 
 		req.setAttribute("nbrProduit", nbrProduit);
 		req.setAttribute("nbrCategorie", nbrCategorie);
