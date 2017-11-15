@@ -55,7 +55,7 @@ public class GestionTransactionTest {
 		int nbrCategoriesBeforeAdd = categories.size();
 		
 		Categorie categorie = new Categorie();
-		categorie.setNom("test");
+		categorie.setNom("testAdd");
 
 		
 		gt.addCategorie(categorie);
@@ -66,12 +66,35 @@ public class GestionTransactionTest {
 		assertNotEquals(nbrCategoriesBeforeAdd, nbrCategoriesAfterAdd);
 	}
 	
-	/*
+	
 	@Test
 	public void testFindCategorieById(){
 		
+		Categorie categorie = new Categorie();
+		categorie.setNom("testId");
+		gt.addCategorie(categorie);
+		
+		Integer id = categorie.getId();
+		
+		Categorie categorieId = gt.findCategorieById(id);
+		
+		assertSame(id, categorieId.getId());
+		
 	}
-	*/
+	
+	@Test
+	public void testFindCategorieByName(){
+		
+		Categorie categorie = new Categorie();
+		String searchedName = "testSearched";
+		categorie.setNom(searchedName);
+		gt.addCategorie(categorie);
+		
+		List<Categorie> categories = gt.findCategoriesByName(searchedName);
+		
+		assertSame(searchedName, categories.get(0).getNom());
+		
+	}
 	
 
 }
