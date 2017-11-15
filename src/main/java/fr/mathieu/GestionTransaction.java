@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import fr.mathieu.categorie.Categorie;
@@ -65,6 +66,14 @@ public class GestionTransaction {
 		TypedQuery<Produit> query = em.createQuery("from " + Produit.class.getSimpleName(), Produit.class);
 		return query.getResultList();
 	}
+	
+	public List<Produit> importProduitsWithPagination() {
+		TypedQuery<Produit> query = em.createQuery("from " + Produit.class.getSimpleName(), Produit.class);
+		int pageNumber = 1;
+		int pageSize = 10;
+		query.setFirstResult((pageNumber-1) * pageSize); 
+		query.setMaxResults(pageSize);
+		return query.getResultList();	}
 	
 	public List<Produit> findCategorieProduits(int categorieId) {
 		TypedQuery<Produit> query = em.createQuery("select produit from " + Produit.class.getSimpleName() + " produit where produit.categorie.id = '" + categorieId +"'", Produit.class);
