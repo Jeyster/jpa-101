@@ -36,5 +36,10 @@ public class GestionUser {
 		TypedQuery<User> query = em.createQuery("from " + User.class.getSimpleName(), User.class);
 		return query.getResultList();
 	}
+	
+	public User findUserById(int userId) {
+		User user = em.find(User.class, userId);
+		return user;
+	}
 
 }

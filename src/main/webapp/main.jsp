@@ -54,51 +54,17 @@
 				</form>	
 			</div>
 		</div>
+		<div class="conteneur1 firstchild">
+			<form method='get' action="commandes">
+				<input type='hidden'/>
+				<button>Passer une commande</button>
+			</form>	
+			<form method='get' action="logout">
+				<input type='hidden'/>
+				<button>Se déconnecter</button>
+			</form>	
+		</div>
 	</div>
-=======
-
-	<h1> Gestion de la base de données Magasin </h1>
-
-	<form method='get' action="produits">
-		<input type='hidden'%>
-		<button>Produits</button>
-	</form>	
-	
-	<form method='get' action="categories">
-		<input type='hidden'/>
-		<button>Catégorie</button>
-	</form>	
-	
-	<form method='get' action="fabricants">
-		<input type='hidden'/>
-		<button>Fabricants</button>
-	</form>	
-	
-	<input type="button" value="Creation aleatoire" name="Cr" onclick="openPage('random-creation.jsp')" />
-	<script type="text/javascript">
-		 function openPage(pageURL){
-		 	window.location.href = pageURL;
-		 }
-	</script>
-	
-	<form method='get' action="delete">
-		<input type='hidden'/>
-		<button>Tout Supprimer</button>
-	</form>	
-	
-	<hr>
-	
-	<form method='get' action="commandes">
-		<input type='hidden'/>
-		<button>Passer une commande</button>
-	</form>	
-	
-	<hr>
-	
-	<form method='get' action="logout">
-		<input type='hidden'/>
-		<button>Se déconnecter</button>
-	</form>	
 
 </body>
 </html>

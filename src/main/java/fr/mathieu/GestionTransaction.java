@@ -23,12 +23,12 @@ public class GestionTransaction {
 	}
 	
 	public Categorie addCategorie(Categorie categorie) {
-		em.persist(categorie);
+		em.merge(categorie);
 		return categorie;
 	}
 	
 	public Fabricant addFabricant(Fabricant fabricant) {
-		em.persist(fabricant);
+		em.merge(fabricant);
 		return fabricant;
 	}
 	

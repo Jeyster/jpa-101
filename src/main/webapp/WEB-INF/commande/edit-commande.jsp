@@ -25,7 +25,7 @@
 </div>
 
 <div>
-	<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes/edit">
+	<form id="form_id" method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes/edit">
 		<label> Utilisateur
 			<select name="userId" form="form_id">
 				<%
@@ -37,6 +37,8 @@
 				%>
 			</select>
 		</label>
+		
+		<br/>
 		
 		<label> Produit
 			<select name="produitId" form="form_id">
@@ -50,11 +52,20 @@
 			</select>
 		</label>
 		
-		<label>
+		<br/>
+		
+		<label> Quantité
 			<input type="number" name="quantity">
 		</label>
+		
+		<br/>
+		
+		<input type="submit" value="Commander">
+		
 	</form>
 </div>
+
+<br/>
 
 <form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes">
 	<input type='hidden'>

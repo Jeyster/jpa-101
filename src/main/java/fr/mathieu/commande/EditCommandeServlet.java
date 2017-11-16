@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.mathieu.GestionTransaction;
 import fr.mathieu.Tools;
 import fr.mathieu.categorie.Categorie;
+import fr.mathieu.produit.Produit;
 import fr.mathieu.user.GestionUser;
+import fr.mathieu.user.User;
 
 @WebServlet("/commandes/edit")
 @SuppressWarnings("serial")
@@ -54,6 +56,43 @@ public class EditCommandeServlet extends HttpServlet{
 		this.getServletContext().getRequestDispatcher("/WEB-INF/commande/edit-commande.jsp").forward(req, resp);
 
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		int userId = 0;
+		Integer produitId = 0;
+		Integer quantity = 0;
+		
+		try {
+			userId = Integer.parseInt(req.getParameter("userId"));
+		}
+		catch(NumberFormatException e) {}
+		
+		try {
+			produitId = Integer.parseInt(req.getParameter("produitId"));
+		}
+		catch(NumberFormatException e) {}
+		
+		try {
+			quantity = Integer.parseInt(req.getParameter("quantity"));
+		}
+		catch(NumberFormatException e) {}
+		
+		User user = gu.findUserById(userId);
+		Produit produit = gt.findProduitById(produitId);
+		
+		Commande commande = new Commande();
+		commande.setUser(user);
+		commande.setProduit(produit);
+		commande.setQuantity(quantity);
+		gc.addCommande(commande);
+		
+		resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/commandes");
+		
+	}
+	
+	
 	
 	
 

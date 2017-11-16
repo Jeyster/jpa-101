@@ -40,6 +40,7 @@
 		<th class="bordure"> Utilisateur </th>
 		<th class="bordure"> Produit </th>
 		<th class="bordure"> Quantité </th>
+		<th class ="bordure"> Date </th>
 		<td></td>
 		<td></td>
 	</tr>
@@ -47,9 +48,10 @@
 	<% for (Commande current : commandes) { %>
 	<tr>
 		<td class="bordure"> <% out.println(current.getId()); %> </td>
-		<td class="bordure"> <% out.println(current.getUser()); %> </td>
+		<td class="bordure"> <% out.println(current.getUser().getLogin()); %> </td>
 		<td class="bordure"> <% out.println(current.getProduit().getNom()); %></td>
 		<td class="bordure"> <% out.println(current.getQuantity()); %></td>
+		<td class="bordure"> <% out.println(); %></td>
 		<td>
 			<!-- Le form permet d'associer sa soumission avec une 'method' renseignée 
 				 d'une servlet d'URL 'action' renseigné.

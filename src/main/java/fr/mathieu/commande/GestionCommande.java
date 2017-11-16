@@ -15,8 +15,8 @@ public class GestionCommande {
 	@PersistenceContext(name="Catalogue")
 	EntityManager em;
 	
-	public void addUser(Commande commande) {
-		em.merge(commande);
+	public void addCommande(Commande commande) {
+		em.persist(commande);
 	}
 	
 	public List<Commande> getCommandes(){
