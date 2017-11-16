@@ -36,6 +36,13 @@
 		<input type='hidden'/>
 		<button>Tout Supprimer</button>
 	</form>	
+	
+	<br/>
+	
+	<form method='get' action="logout">
+		<input type='hidden'/>
+		<button>Se déconnecter</button>
+	</form>	
 
 </body>
 </html>
