@@ -1,0 +1,26 @@
+#conteneur 
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+.firstchild:nth-child(2)
+{
+	flex: 1;
+}
+
+.conteneur1 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.conteneur2 {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}

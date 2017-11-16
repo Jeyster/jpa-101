@@ -4,38 +4,56 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <link rel="stylesheet" type="text/css" href="main.css">
 <title>Main Page</title>
 </head>
 <body>
-
-	<h1> Gestion de la base de données Magasin </h1>
-
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits">
-		<input type='hidden'%>
-		<button>Produits</button>
-	</form>	
+	<div id="conteneur">
+		<div class="firstchild">
+			<div>
+				<h1> Gestion de la base de données Magasin </h1>
+			</div>
+		</div>
 	
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories">
-		<input type='hidden'/>
-		<button>Catégorie</button>
-	</form>	
-	
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants">
-		<input type='hidden'/>
-		<button>Fabricants</button>
-	</form>	
-	
-	<input type="button" value="Creation aleatoire" name="Cr" onclick="openPage('random-creation.jsp')" />
-	<script type="text/javascript">
-		 function openPage(pageURL){
-		 	window.location.href = pageURL;
-		 }
-	</script>
-	
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/delete">
-		<input type='hidden'/>
-		<button>Tout Supprimer</button>
-	</form>	
-
+		<div class="conteneur1 firstchild">
+			<div>
+				<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits">
+					<input type='hidden'>
+					<button>Produits</button>
+				</form>	
+			</div>
+			
+			<div>
+				<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories">
+					<input type='hidden'/>
+					<button>Catégorie</button>
+				</form>	
+			</div>
+			
+			<div>
+				<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants">
+					<input type='hidden'/>
+					<button>Fabricants</button>
+				</form>	
+			</div>
+		</div>
+		<div class="conteneur2 firstchild">	
+			<div>
+				<input type="button" value="Creation aleatoire" name="Cr" onclick="openPage('random-creation.jsp')" />
+				<script type="text/javascript">
+					 function openPage(pageURL){
+					 	window.location.href = pageURL;
+					 }
+				</script>
+			</div>
+			
+			<div>
+				<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/delete">
+					<input type='hidden'/>
+					<button>Tout Supprimer</button>
+				</form>	
+			</div>
+		</div>
+	</div>
 </body>
 </html>
