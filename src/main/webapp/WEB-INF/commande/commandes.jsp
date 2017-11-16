@@ -1,3 +1,4 @@
+<%@page import="fr.mathieu.commande.Commande"%>
 <%@page import="fr.mathieu.categorie.Categorie"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,61 +19,50 @@
 <body>
 
 <%
-	//on récupère les Categorie envoyées comme attribut de la requète
-	List<Categorie> categories = (List<Categorie>) request.getAttribute("categories");
+	//on récupère les Commandes envoyées comme attribut de la requète
+	List<Commande> commandes = (List<Commande>) request.getAttribute("commandes");
 %>
 
-<h1><% out.println(categories.size()); %> Categories </h1>
+<h1><% out.println(commandes.size()); %> Commandes </h1>
 
 	<input type="button" value="Revenir au menu principal" name="Cr" onclick="openPage('main.jsp')" />
-	
 	<script type="text/javascript">
 		 function openPage(pageURL){
 		 	window.location.href = pageURL;
 		 }
 	</script>
-	
-<div>
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories">
-		<label> <input type='text' name='searchedName'/> </label>
-		<input type="submit" value="Rechercher">
-	</form>
-</div>
 
 <div>
 
 <table style="border-collapse: collapse;">
 	<tr> 
 		<th class="bordure"> Id </th>
-		<th class="bordure"> Nom </th>
-		<th class="bordure"> Nombre de Produit </th>
+		<th class="bordure"> Utilisateur </th>
+		<th class="bordure"> Produit </th>
+		<th class="bordure"> Quantité </th>
 		<td></td>
 		<td></td>
 	</tr>
 	
-	<% for (Categorie current : categories) { %>
+	<% for (Commande current : commandes) { %>
 	<tr>
 		<td class="bordure"> <% out.println(current.getId()); %> </td>
-		<td class="bordure"> <% out.println(current.getNom()); %> </td>
-		<td class="bordure"> <% out.println(current.getProduits().size()); %>
-			<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits">
-				<input type='hidden' name='categorieId' value='<%=current.getId()%>'/>
-				<button>Voir</button>
-			</form>	
-		</td>
+		<td class="bordure"> <% out.println(current.getUser()); %> </td>
+		<td class="bordure"> <% out.println(current.getProduit().getNom()); %></td>
+		<td class="bordure"> <% out.println(current.getQuantity()); %></td>
 		<td>
 			<!-- Le form permet d'associer sa soumission avec une 'method' renseignée 
 				 d'une servlet d'URL 'action' renseigné.
 				 Une valeur 'value' est envoyé à la servlet comme paramètre de requête
 				 identifiée par 'name' -->
-			<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
-				<input type='hidden' name='categorieId' value='<%=current.getId()%>'/>
+			<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes/edit">
+				<input type='hidden' name='commandeId' value='<%=current.getId()%>'/>
 				<button>Editer</button>
 			</form>		
 		</td>
 		<td>
-			<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/delete">
-				<input type='hidden' name='categorieId' value='<%=current.getId()%>'/>
+			<form method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes/delete">
+				<input type='hidden' name='commandeId' value='<%=current.getId()%>'/>
 				<button>X</button>
 			</form>
 		</td>
@@ -83,9 +73,9 @@
 </div>
 
 <div>
-	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/categories/edit">
-		<input type='hidden' name='produitId' value='-1'/>
-		<button>Nouvelle Catégorie</button>
+	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes/edit">
+		<input type='hidden'>
+		<button>Nouvelle Commande</button>
 	</form>	
 </div>
 

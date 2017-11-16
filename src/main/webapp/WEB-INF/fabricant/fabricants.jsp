@@ -88,7 +88,16 @@
 	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/fabricants/edit">
 		<input type='hidden' name='fabricantId' value='0'/>
 		<button>Nouveau Fabricant</button>
-	</form>	</div>
+	</form>	
+</div>
+
+<br/>
+	
+<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/logout">
+	<input type='hidden'/>
+	<button>Se déconnecter</button>
+</form>	
+
 
 </body>
 </html>

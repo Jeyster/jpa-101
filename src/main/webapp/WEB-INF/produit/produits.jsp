@@ -34,6 +34,21 @@
 	</script>
 </div>
 
+<!--
+<div>
+	<a href="${pageContext.request.contextPath}/produits/export" download="produits.xls">Exporter</a> -->
+	<!-- ${pageContext.request.contextPath} = "http://localhost:8080/jpa-101-1.0-SNAPSHOT"  -->
+<!-- </div> 
+
+<div>
+	<form method="post" enctype="multipart/form-data" action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits/import">
+	   <input type="file" id="file" name="file" multiple>
+	   <input type="hidden" value="D:/" name="destination">
+	   <button>Envoyer</button>
+	</form>
+</div>
+ -->
+
 <div>
 	<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/produits">
 		<label> <input type='text' name='searchedName'/> </label>
@@ -89,6 +104,13 @@
 		<button>Nouveau Produit</button>
 	</form>	
 </div>
+
+<br/>
+	
+<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/logout">
+	<input type='hidden'/>
+	<button>Se déconnecter</button>
+</form>	
 
 </body>
 </html>

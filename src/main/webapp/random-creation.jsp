@@ -57,6 +57,13 @@
 		 	window.location.href = pageURL;
 		 }
 	</script>
+	
+	<br/>
+	
+	<form method='get' action="logout">
+		<input type='hidden'/>
+		<button>Se déconnecter</button>
+	</form>	
 
 </body>
 </html>

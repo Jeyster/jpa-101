@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.mathieu.GestionTransaction;
+import fr.mathieu.Tools;
 
 
 /* SERVLET
@@ -41,6 +42,11 @@ public class EditCategorieServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		if (Tools.getLoggedInUser(req.getSession()) == null) {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/login.jsp");
+		}
+		
 		int produitId;	
 		try{
 			produitId = Integer.parseInt(req.getParameter("produitId"));
@@ -83,6 +89,11 @@ public class EditCategorieServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		if (Tools.getLoggedInUser(req.getSession()) == null) {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/login.jsp");
+		}
+		
 		String name = req.getParameter("name");
 		int produitId;
 		try {

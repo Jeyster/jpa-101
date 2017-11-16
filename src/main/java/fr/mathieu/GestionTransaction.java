@@ -66,6 +66,14 @@ public class GestionTransaction {
 		return query.getResultList();
 	}
 	
+	public List<Produit> importProduitsWithPagination() {
+		TypedQuery<Produit> query = em.createQuery("from " + Produit.class.getSimpleName(), Produit.class);
+		int pageNumber = 1;
+		int pageSize = 10;
+		query.setFirstResult((pageNumber-1) * pageSize); 
+		query.setMaxResults(pageSize);
+		return query.getResultList();	}
+	
 	public List<Produit> findCategorieProduits(int categorieId) {
 		TypedQuery<Produit> query = em.createQuery("select produit from " + Produit.class.getSimpleName() + " produit where produit.categorie.id = '" + categorieId +"'", Produit.class);
 		return query.getResultList();

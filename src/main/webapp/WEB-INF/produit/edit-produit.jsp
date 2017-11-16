@@ -81,6 +81,13 @@
 	<button>Revenir aux Produits</button>
 </form>	
 
+<br/>
+	
+<form method='get' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/logout">
+	<input type='hidden'/>
+	<button>Se déconnecter</button>
+</form>	
+
 
 </body>
 </html>

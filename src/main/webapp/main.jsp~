@@ -8,6 +8,7 @@
 <title>Main Page</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="conteneur">
 		<div class="firstchild">
 			<div>
@@ -100,5 +101,6 @@
 		<button>Se déconnecter</button>
 	</form>	
 
+>>>>>>> 1a86c977574f7ed2f7884fa4bd8f195bdeb4c643
 </body>
 </html>

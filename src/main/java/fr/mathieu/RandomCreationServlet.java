@@ -80,6 +80,10 @@ public class RandomCreationServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		if (Tools.getLoggedInUser(req.getSession()) == null) {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/login.jsp");
+		}
+		
 		int nbrProduit = Integer.parseInt(req.getParameter("nbrProduit"));
 		int nbrCategorie = Integer.parseInt(req.getParameter("nbrCategorie"));
 		int nbrFabricant = Integer.parseInt(req.getParameter("nbrFabricant"));
@@ -87,10 +91,37 @@ public class RandomCreationServlet extends HttpServlet {
 		List<Categorie> categories = gt.importCategories();
 		categories.addAll(this.createCategorieList(nbrCategorie));
 		
+		try        
+		{
+		    Thread.sleep(1000);
+		} 
+		catch(InterruptedException ex) 
+		{
+		    Thread.currentThread().interrupt();
+		}
+		
 		List<Fabricant> fabricants = gt.importFabricants();
 		fabricants.addAll(this.createFabriquantList(nbrFabricant));
 		
+		try        
+		{
+		    Thread.sleep(1000);
+		} 
+		catch(InterruptedException ex) 
+		{
+		    Thread.currentThread().interrupt();
+		}
+		
 		this.createProduitListWithRandomFabCat(nbrProduit, fabricants, categories);
+		
+		try        
+		{
+		    Thread.sleep(1000);
+		} 
+		catch(InterruptedException ex) 
+		{
+		    Thread.currentThread().interrupt();
+		}
 
 		req.setAttribute("nbrProduit", nbrProduit);
 		req.setAttribute("nbrCategorie", nbrCategorie);

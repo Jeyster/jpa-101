@@ -12,15 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.mathieu.GestionTransaction;
+import fr.mathieu.Tools;
 
 
 /* SERVLET
  * -----------
  * Importe depuis BS la liste des Fabricant
- * Permet leur affichage et leur gestion par HTML
- * 
- *  TODO : nécessite l'existence de la liste de Categorie en changant l'URL index.html
- *  		affficher un message d'erreur perso */
+ * Permet leur affichage et leur gestion par HTML */
 
 @WebServlet("/produits")
 @SuppressWarnings("serial")
@@ -31,6 +29,11 @@ public class ProduitsServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		if (Tools.getLoggedInUser(req.getSession()) == null) {
+			resp.sendRedirect("/jpa-101-1.0-SNAPSHOT/login.jsp");
+		}
+		
 		int myCategorieId = 0;
 		int myFabricantId = 0;
 		String searchedName = "";
@@ -38,9 +41,6 @@ public class ProduitsServlet extends HttpServlet{
 		try {
 			myCategorieId = Integer.parseInt(req.getParameter("categorieId"));
 		} catch (NumberFormatException e) {};
-		try {
-			myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
-		} catch (NumberFormatException e) {};	
 		try {
 			myFabricantId = Integer.parseInt(req.getParameter("fabricantId"));
 		} catch (NumberFormatException e) {};	
