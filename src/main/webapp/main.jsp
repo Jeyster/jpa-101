@@ -37,7 +37,14 @@
 		<button>Tout Supprimer</button>
 	</form>	
 	
-	<br/>
+	<hr>
+	
+	<form method='get' action="commandes">
+		<input type='hidden'/>
+		<button>Passer une commande</button>
+	</form>	
+	
+	<hr>
 	
 	<form method='get' action="logout">
 		<input type='hidden'/>

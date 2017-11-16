@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import fr.mathieu.commande.Commande;
+
 
 @Stateless
 public class GestionUser {
@@ -28,6 +30,11 @@ public class GestionUser {
 			}
 		}
 		return null;
+	}
+	
+	public List<User> getUsers(){
+		TypedQuery<User> query = em.createQuery("from " + User.class.getSimpleName(), User.class);
+		return query.getResultList();
 	}
 
 }

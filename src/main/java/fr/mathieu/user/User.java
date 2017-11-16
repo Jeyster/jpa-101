@@ -12,7 +12,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	
+
 	@Column(unique = true) //Interdit la création/ajout d'un user avec un login déjà existant
 	private String login;
 	
@@ -21,6 +21,14 @@ public class User {
 	private String lastname;
 	
 	private String firstname;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getLogin() {
 		return login;
