@@ -51,7 +51,7 @@
 		<td class="bordure"> <% out.println(current.getUser().getLogin()); %> </td>
 		<td class="bordure"> <% out.println(current.getProduit().getNom()); %></td>
 		<td class="bordure"> <% out.println(current.getQuantity()); %></td>
-		<td class="bordure"> <% out.println(); %></td>
+		<td class="bordure"> <% out.println(current.getDate()); %></td>
 		<td>
 			<!-- Le form permet d'associer sa soumission avec une 'method' renseignée 
 				 d'une servlet d'URL 'action' renseigné.

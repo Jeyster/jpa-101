@@ -1,7 +1,9 @@
 package fr.mathieu.commande;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,6 +29,7 @@ public class Commande {
 	
 	private Integer quantity;
 	
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP") //DEFAULT pour attribuer current timstamp lors de la création et ON UPDATE lors de l'édition/Maj
 	private Date date;
 
 	public Integer getId() {
@@ -60,5 +63,15 @@ public class Commande {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import fr.mathieu.categorie.Categorie;
+import fr.mathieu.produit.Produit;
 
 @Stateless
 public class GestionCommande {
@@ -16,7 +17,7 @@ public class GestionCommande {
 	EntityManager em;
 	
 	public void addCommande(Commande commande) {
-		em.persist(commande);
+		em.merge(commande);
 	}
 	
 	public List<Commande> getCommandes(){
@@ -27,6 +28,12 @@ public class GestionCommande {
 	public Commande findCommandeById(Integer commandeId) {
 		Commande commande = em.find(Commande.class, commandeId);
 		return commande;
+	}
+
+	public Commande removeByIdCommande(int commandeId) {
+		Commande commande = this.findCommandeById(commandeId);
+		em.remove(commande);
+		return commande;		
 	}
 
 }

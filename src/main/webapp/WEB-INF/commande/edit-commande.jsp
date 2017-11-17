@@ -14,6 +14,7 @@
 <body>
 
 <% 
+	Integer commandeId = (Integer) request.getAttribute("commandeId");
 	Commande commande = (Commande) request.getAttribute("commande"); 
 	List<User> users = (List<User>) request.getAttribute("users");
 	List<Produit> produits = (List<Produit>) request.getAttribute("produits");
@@ -27,7 +28,7 @@
 <div>
 	<form id="form_id" method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes/edit">
 		<label> Utilisateur
-			<select name="userId" form="form_id">
+			<select name="userId" form="form_id" required>
 				<%
 					for (User current : users) {
 						%>
@@ -41,7 +42,7 @@
 		<br/>
 		
 		<label> Produit
-			<select name="produitId" form="form_id">
+			<select name="produitId" form="form_id" required>
 				<%
 					for (Produit current : produits) {
 						%>
@@ -59,6 +60,8 @@
 		</label>
 		
 		<br/>
+		
+		<input type="hidden" name="commandeId" value=<%=commandeId%>>
 		
 		<input type="submit" value="Commander">
 		
