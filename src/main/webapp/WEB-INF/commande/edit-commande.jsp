@@ -27,20 +27,6 @@
 
 <div>
 	<form id="form_id" method='post' action="http://localhost:8080/jpa-101-1.0-SNAPSHOT/commandes/edit">
-		<label> Utilisateur
-			<select name="userId" form="form_id" required>
-				<%
-					for (User current : users) {
-						%>
-						<option value='<%=current.getId()%>'><% out.println(current.getLogin()); %></option>
-						<%
-					}
-				%>
-			</select>
-		</label>
-		
-		<br/>
-		
 		<label> Produit
 			<select name="produitId" form="form_id" required>
 				<%

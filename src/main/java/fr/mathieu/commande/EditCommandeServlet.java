@@ -65,14 +65,8 @@ public class EditCommandeServlet extends HttpServlet{
 		}
 		catch(NumberFormatException e){ this.commandeId = 0; }	
 		
-		int userId = 0;
 		Integer produitId = 0;
 		Integer quantity = 0;
-		
-		try {
-			userId = Integer.parseInt(req.getParameter("userId"));
-		}
-		catch(NumberFormatException e) {}
 		
 		try {
 			produitId = Integer.parseInt(req.getParameter("produitId"));
@@ -84,7 +78,6 @@ public class EditCommandeServlet extends HttpServlet{
 		}
 		catch(NumberFormatException e) {}
 		
-		User user = gu.findUserById(userId);
 		Produit produit = gt.findProduitById(produitId);
 		
 		Commande commande;
@@ -94,7 +87,7 @@ public class EditCommandeServlet extends HttpServlet{
 		else {
 			commande = new Commande();
 		}
-		commande.setUser(user);
+		commande.setUser(Tools.getLoggedInUser(req.getSession()));
 		commande.setProduit(produit);
 		commande.setQuantity(quantity);
 		gc.addCommande(commande);
